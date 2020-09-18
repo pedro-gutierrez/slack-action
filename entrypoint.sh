@@ -12,12 +12,19 @@ case $INPUT_STATUS in
     "success")
         COLOR="good"
         TEXT_SUFFIX="completed *succesfully*"
+        ;;
     "failed")
         COLOR="danger"
         TEXT_SUFFIX="*failed*"
+        ;;
     "cancelled")
         COLOR="warning"
         TEXT_SUFFIX="been *cancelled*"
+        ;;
+    *)
+        echo "Unsupported status $INPUT_STATUS"
+        exit 1
+        ;;
 esac
 
 TEXT="The workflow `$GITHUB_WORKFLOW` has $TEXT_SUFFIX"
