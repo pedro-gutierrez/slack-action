@@ -11,15 +11,15 @@ COMMIT_URL="$REPO_URL/commit/$GITHUB_SHA"
 case $INPUT_STATUS in
     "success")
         COLOR="good"
-        TEXT_SUFFIX="completed *succesfully*"
+        TEXT_SUFFIX="completed \`succesfully\`"
         ;;
     "failed")
         COLOR="danger"
-        TEXT_SUFFIX="*failed*"
+        TEXT_SUFFIX="\`failed\`"
         ;;
     "cancelled")
         COLOR="warning"
-        TEXT_SUFFIX="been *cancelled*"
+        TEXT_SUFFIX="been \`cancelled\`"
         ;;
     *)
         echo "Unsupported status $INPUT_STATUS"
