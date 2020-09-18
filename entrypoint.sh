@@ -27,12 +27,9 @@ case $INPUT_STATUS in
         ;;
 esac
 
-TEXT='The workflow \`$GITHUB_WORKFLOW\` has $TEXT_SUFFIX'
+TEXT="The workflow \`$GITHUB_WORKFLOW\` has $TEXT_SUFFIX"
+PAYLOAD="{ \"attachments\": [ { \"color\": \"$COLOR\", \"text\": \"$TEXT\", \"fields\": [{ \"title\": \"Repository\", \"short\": true, \"value\": \"<$REPO_URL|$REPO_SLUG>\" }, { \"title\": \"Ref\", \"short\": true, \"value\": \"$GITHUB_REF\" }], \"actions\": [ {\"type\": \"button\", \"text\": \"Commit\", \"url\": \"$COMMIT_URL\"}, { \"type\": \"button\", \"text\": \"Action\", \"url\": \"$COMMIT_URL/checks\" }]}]}"
 
+echo "Sending: $PAYLOAD"
 
-echo "color=$COLOR"
-echo "repo url=$REPO_URL"
-echo "repo slug=$REPO_SLUG"
-echo "commit url=$COMMIT_URL"
-
-curl -X POST -H "content-type: application/json" "$INPUT_SLACK_URL" -d '{ attachments": [ { "color": "$COLOR", "text": "$TEXT", "fields": [{ "title": "Repository", "short": true, "value": "<$REPO_URL|$REPO_SLUG>" }, { "title": "Ref", "short": true, "value": "$GITHUB_REF" }], "actions": [ {"type": "button", "text": "Commit", "url": "$COMMIT_URL"}, { "type": "button", "text": "Action", "url": "$COMMIT_URL/checks" }]}]}'
+curl -i -X POST -H "content-type: application/json" "$INPUT_SLACK_URL" -d "$PAYLOAD"
