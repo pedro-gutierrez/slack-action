@@ -11,7 +11,7 @@ COMMIT_URL="$REPO_URL/commit/$GITHUB_SHA"
 case $INPUT_STATUS in
     "success")
         COLOR="good"
-        TEXT_SUFFIX="completed \`succesfully\`"
+        TEXT_SUFFIX="completed \`successfully\`"
         ;;
     "failed")
         COLOR="danger"
