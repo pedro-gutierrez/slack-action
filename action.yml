@@ -1,0 +1,14 @@
+name: 'slack-action'
+description: 'Notify via slack'
+author: 'Pedro Gutiérrez'
+branding:
+  icon: 'cloud'
+  color: 'blue'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+inputs:
+  slack_webhook:
+    description: "Slack webhook url"
+  status:
+    description: "success, failed, cancelled"
